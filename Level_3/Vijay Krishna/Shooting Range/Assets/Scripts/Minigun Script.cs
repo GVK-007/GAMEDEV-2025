@@ -68,6 +68,33 @@ public class MinigunController : MonoBehaviour
         originalYScale = transform.localScale.y;
     }
 
+    // --- NEW: OnDisable Function ---
+    void OnDisable()
+    {
+        // This function is called by Unity when the WeaponManager disables this gun.
+        // We must stop all coroutines and sounds and reset the state.
+
+        // 1. Stop the main firing coroutine
+        if (fireSequenceCoroutine != null)
+        {
+            StopCoroutine(fireSequenceCoroutine);
+            fireSequenceCoroutine = null;
+        }
+
+        // 2. Stop all sounds immediately
+        if (revUpSoundSource != null) revUpSoundSource.Stop();
+        if (firingSoundSource != null) firingSoundSource.Stop();
+        if (revDownSoundSource != null) revDownSoundSource.Stop();
+
+        // 3. Reset all state variables to default
+        currentState = GunState.Idle;
+        currentHeat = 0f;
+        fireCooldownTimer = 0f; 
+        
+        // 4. Reset visuals
+        UpdateOverheatVisuals(); // This will reset color since heat is 0
+    }
+
     void Update()
     {
         // --- FROM BULLET SPAWNING (State Machine) ---
@@ -95,7 +122,7 @@ public class MinigunController : MonoBehaviour
         HandleGunRotation();
     }
 
-    // --- NEW: Coroutine to handle the entire firing sequence (FROM BULLET SPAWNING) ---
+    // --- Coroutine to handle the entire firing sequence (FROM BULLET SPAWNING) ---
     IEnumerator RevAndFireSequence()
     {
         // --- 1. REV UP STAGE ---
@@ -325,7 +352,7 @@ public class MinigunController : MonoBehaviour
     }
     
     /// <summary>
-    /// Helper function to play a sound clip from an AudioSource. (FROM BULLET SPAWNING)
+    // Helper function to play a sound clip from an AudioSource. (FROM BULLET SPAWNING)
     /// </summary>
     void PlaySound(AudioSource sourceToPlay)
     {
@@ -339,11 +366,10 @@ public class MinigunController : MonoBehaviour
     void FireBullet(Vector2 direction)
     {
         // 1. Calculate the rotation *for the sprite*
-        //    (Assumes a RIGHT-facing bullet prefab)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // 2. Instantiate the Bullet at the correct rotation
-        // --- FIX: Removed the '- 90f'. This assumes a RIGHT-facing bullet. ---
+        // User confirmed -90f is correct for their UP-facing prefab
         GameObject newProjectile = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0, 0, angle - 90f));
 
         // 3. Set the bullet's movement direction

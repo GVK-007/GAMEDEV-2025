@@ -119,10 +119,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21392339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 189275158969750561, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
+  m_PrefabInstance: {fileID: 604950285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &21392340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 110959574994531559, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
   m_PrefabInstance: {fileID: 604950285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &490427274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3553091007071841654, guid: 595b83e95f0421140860fe5987c30db0, type: 3}
+  m_PrefabInstance: {fileID: 8653630597716560975}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
@@ -230,7 +240,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -271,11 +281,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 110959574994531559, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.614
+      value: 0.6140001
       objectReference: {fileID: 0}
     - target: {fileID: 110959574994531559, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8
+      value: -0.79999995
       objectReference: {fileID: 0}
     - target: {fileID: 110959574994531559, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
       propertyPath: m_LocalPosition.z
@@ -317,13 +327,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1904306908917788373, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5055425883551448259, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.158
+      value: 1.223
       objectReference: {fileID: 0}
     - target: {fileID: 5055425883551448259, guid: 95aa0f6955c8bd54986976f49f192961, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.176
+      value: -0.088
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -500,6 +514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209906082}
+  - component: {fileID: 1209906083}
   m_Layer: 0
   m_Name: Weapon Manager
   m_TagString: Untagged
@@ -520,11 +535,27 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1829792923}
   - {fileID: 1247602549}
+  - {fileID: 1829792923}
   - {fileID: 21392340}
   m_Father: {fileID: 1370212194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1209906083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209906081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79876f103b180934f8abf48e8ad4b3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
+  weapons:
+  - {fileID: 490427274}
+  - {fileID: 1829792922}
+  - {fileID: 21392339}
 --- !u!4 &1247602549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7317971796545776345, guid: 595b83e95f0421140860fe5987c30db0, type: 3}
@@ -715,6 +746,11 @@ MonoBehaviour:
   dashStretch: 0.8
   afterImagePrefab: {fileID: 5836266873259515627, guid: 1bcd2b31ab3c4e2478a64686fe3fa280, type: 3}
   afterImageSpacing: 0.05
+--- !u!1 &1829792922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3595040381293552442, guid: 3eea8c507f1dbdb469c8aafdd1ed14a8, type: 3}
+  m_PrefabInstance: {fileID: 781814781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1829792923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4861358411081328653, guid: 3eea8c507f1dbdb469c8aafdd1ed14a8, type: 3}
@@ -728,6 +764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1209906082}
     m_Modifications:
+    - target: {fileID: -1890094819001290698, guid: 595b83e95f0421140860fe5987c30db0, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: a438b071b7547c646ac2f25dc028786c, type: 3}
     - target: {fileID: 3553091007071841654, guid: 595b83e95f0421140860fe5987c30db0, type: 3}
       propertyPath: m_Name
       value: Dualies
